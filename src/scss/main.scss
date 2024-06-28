@@ -24,126 +24,137 @@ h2 {
   font-size: $fs-h2;
 }
 
+body {
+  min-height: 100svh;
+  background-color: $clr-eggshell;
+}
+
 .container {
-  height: 100%;
-  min-height: 100vh;
+  // height: 100%;
   background-color: $clr-white;
+
   max-width: 46rem;
   margin-inline: auto;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 48em) {
     margin-top: 7.68rem;
     border-radius: $rounded-l;
   }
 }
 
-.recipe {
-  &__hero {
+.recipe__hero {
+  @media screen and (min-width: 48em) {
+    padding-top: $space-800;
+    padding-inline: $space-800;
     img {
-      @media screen and (min-width: 768px) {
-      }
+      border-radius: $rounded-s;
     }
+  }
+}
 
-    @media screen and (min-width: 768px) {
-      padding-top: $space-800;
-      padding-inline: $space-800;
-      img {
-        border-radius: $rounded-s;
-      }
+.recipe__heading {
+  font-size: clamp(2.25rem, calc(2.25rem + ((1vw - 0.2rem) * 0.4545)), 2.5rem);
+  color: $clr-dark-charcoal;
+  line-height: 1.1;
+  margin-bottom: $space-200;
+}
+
+.recipe__content-wrapper {
+  padding: clamp(2rem, calc(2rem + ((1vw - 0.2rem) * 0.9091)), 2.5rem);
+}
+
+.recipe__time {
+  margin-top: $space-400;
+  padding: $space-300;
+  padding-top: $space-250;
+  background-color: $clr-rose-white;
+  border-radius: $rounded-s;
+  @include section-flex-gap(10px);
+}
+
+.recipe__time__heading {
+  font-family: $ff-text;
+  color: $clr-dark-raspberry;
+  font-size: 1.25rem;
+  font-weight: $fw-bold;
+  letter-spacing: -0.2px;
+}
+
+.recipe__time__list {
+  @include list;
+}
+
+.recipe__ingredients {
+  margin-top: $space-300;
+  @include section-flex-gap(15px);
+}
+
+.recipe__ingredients__list {
+  @include list;
+}
+
+.recipe__instructions {
+  margin-top: $space-260;
+  @include section-flex-gap(15px);
+}
+
+.recipe__instructions__list {
+  @include list;
+}
+
+.recipe__instructions__list-item {
+  padding-left: $space-200;
+
+  span {
+    font-weight: $fw-bold;
+  }
+
+  &::marker {
+    font-weight: bold;
+    color: $clr-dark-raspberry;
+  }
+}
+
+.recipe__nutrition {
+  margin-top: $space-260;
+}
+
+.recipe__nutrition__table {
+  margin-top: 12px;
+  width: 100%;
+  border-collapse: collapse;
+  // cell-spacing: 10px;
+
+  tr {
+    padding-inline: 2rem;
+  }
+
+  tr:last-of-type {
+    th,
+    td {
+      border-bottom: none;
     }
   }
 
-  &__heading {
-    font-size: clamp(
-      2.25rem,
-      calc(2.25rem + ((1vw - 0.2rem) * 0.4545)),
-      2.5rem
-    );
-    color: $clr-dark-charcoal;
-    line-height: 1.1;
-    margin-bottom: $space-200;
+  th,
+  td {
+    padding: 12px 32px;
+    border-bottom: 1px solid $clr-light-grey;
+    text-align: left;
   }
 
-  &__content-wrapper {
-    padding: clamp(2rem, calc(2rem + ((1vw - 0.2rem) * 0.9091)), 2.5rem);
+  th {
+    font-weight: normal;
   }
 
-  &__time {
-    margin-top: $space-400;
-    padding: $space-300;
-    padding-top: $space-250;
-    background-color: $clr-rose-white;
-    border-radius: $rounded-s;
-    @include section-flex-gap(10px);
-
-    &__heading {
-      font-family: $ff-text;
-      color: $clr-dark-raspberry;
-      font-size: 20px;
-      font-weight: $fw-bold;
-      letter-spacing: -0.2px;
-    }
-
-    &__list {
-      @include list;
-    }
+  td {
+    font-weight: bold;
+    color: $clr-nutmeg;
   }
+}
 
-  &__ingredients {
-    margin-top: $space-300;
-    @include section-flex-gap(15px);
-
-    &__list {
-      @include list;
-    }
-  }
-
-  &__instructions {
-    margin-top: $space-260;
-    @include section-flex-gap(15px);
-
-    &__list {
-      @include list;
-    }
-
-    &__list-item {
-      padding-left: $space-200;
-
-      span {
-        font-weight: $fw-bold;
-      }
-
-      &::marker {
-        font-weight: bold;
-        color: $clr-dark-raspberry;
-      }
-    }
-  }
-
-  &__nutrition {
-    margin-top: $space-260;
-    &__heading {
-      margin-bottom: $space-100;
-    }
-
-    table {
-      margin-top: 12px;
-      width: 100%;
-      border-collapse: collapse;
-
-      td {
-        padding-left: $space-400;
-        padding-block: 12px;
-        border-bottom: 1px solid $clr-light-grey;
-      }
-
-      td:nth-of-type(2) {
-        width: 53%;
-        font-weight: bold;
-        color: $clr-nutmeg;
-      }
-    }
-  }
+.recipe__nutrition__heading {
+  margin-bottom: $space-100;
 }
 
 .line {
@@ -152,23 +163,22 @@ h2 {
 }
 
 footer {
-  display: flex;
-  flex-direction: column;
+  @include flex-col;
   text-align: center;
   font-size: $fs-body;
   gap: 0.3rem;
   justify-content: center;
   margin-block: $space-100;
 
-  a {
-    color: $clr-dark-raspberry;
-
-    &:hover {
-      color: $clr-wenge-brown;
-    }
-  }
-
   @media screen and (min-width: 768px) {
     flex-direction: row;
+  }
+}
+
+footer a {
+  color: $clr-dark-raspberry;
+
+  &:hover {
+    color: $clr-wenge-brown;
   }
 }
